@@ -2,15 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayAndExitController : MonoBehaviour
+public class RestarGame : MonoBehaviour
 {
-    public Button exitbtn;
-    public Button playbtn;
+    public Button restartbtn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playbtn.onClick.AddListener(LoadLVL);
-        exitbtn.onClick.AddListener(CloseGame);
+        restartbtn.onClick.AddListener(RESTART);    
     }
 
     // Update is called once per frame
@@ -18,10 +16,9 @@ public class PlayAndExitController : MonoBehaviour
     {
         
     }
-    void LoadLVL() {
+    void RESTART() {
         SceneManager.LoadScene("HUB");
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
-    void CloseGame() {
-        Application.Quit();
-    }
+
 }

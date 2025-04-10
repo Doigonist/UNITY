@@ -10,12 +10,14 @@ public class MovementController : MonoBehaviour
     private Vector2 moveDirection;
     private Vector2 JumpDirection;
     private bool isGrounded;
+    private GlobalValues Global;
+    public static bool ifControlsEnabled = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        speed = 15;
-        jumpheight = 1800;
+        speed = 20;
+        jumpheight = 2000;
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         isGrounded = true;
@@ -25,26 +27,37 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        JumpDirection = new Vector2 (Input.GetAxisRaw("Horizontal"), 5);
-        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0) * speed;
-        rb.linearVelocity = moveDirection;
-        if (Input.GetButton("Jump") && isGrounded) {
-            rb.AddForceY(jumpheight, ForceMode2D.Impulse);
+        if (MovementController.ifControlsEnabled)
+        {
+            JumpDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 5);
+            moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0) * speed;
+            rb.linearVelocity = moveDirection;
+            if (Input.GetButton("Jump") && isGrounded)
+            {
+                rb.AddForceY(jumpheight, ForceMode2D.Impulse);
+            }
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform") {
             isGrounded = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag== "Platform") {
             isGrounded=false;
+    
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform") {
+            GlobalValues.Score++;
         }
     }
     void JumpLogic() {
-        // Change for test commit
+        
     }
 }
