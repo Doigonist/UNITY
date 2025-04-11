@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1343ddbfbd703e740aed7f55bcd61b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOSESCREEN: {fileID: 1008393218084978199, guid: 42d8f6bcb697f61408f0348f2d28ed22, type: 3}
+  LOSESCREEN: {fileID: 2985208045857320965, guid: caaa1fd5571b39544a180c4d9ada36be, type: 3}

@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
@@ -29,13 +30,18 @@ public class MovementController : MonoBehaviour
     {
         if (MovementController.ifControlsEnabled)
         {
-            JumpDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 5);
             moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0) * speed;
             rb.linearVelocity = moveDirection;
             if (Input.GetButton("Jump") && isGrounded)
             {
                 rb.AddForceY(jumpheight, ForceMode2D.Impulse);
+
             }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            MovementController.ifControlsEnabled = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

@@ -3,10 +3,12 @@ using UnityEngine;
 public class DieOnRed : MonoBehaviour
 {
     public Canvas LOSESCREEN;
+    private Canvas SpawnedLoseScreen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log(LOSESCREEN);
     }
 
     // Update is called once per frame
@@ -21,6 +23,6 @@ public class DieOnRed : MonoBehaviour
         }
     }
     void Lose() {
-        LOSESCREEN.enabled = true;
+       SpawnedLoseScreen = Instantiate(LOSESCREEN);
     }
 }
